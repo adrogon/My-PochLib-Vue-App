@@ -1,37 +1,44 @@
 <template>
-  <div class="book-item">
-    <a :href= "volumeInfo.previewLink" target="_blank">
-      <template v-if= "volumeInfo.imageLinks">
-        <img :src= "volumeInfo.imageLinks.thumbnail" :alt="volumeInfo.title">
-      </template>
-      <template v-else>
-        <img
-          src="https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Salesforce_P1_FR/unavailable.png"
-          :alt= "unavailable"
-          width="128"
-        >
-      </template>
+  <div>
+    <template v-if= "info.imageLinks">
+      <img :src= "info.imageLinks.thumbnail" :alt="info.title">
+    </template>
+    <template v-else>
+      <img
+        src="https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Salesforce_P1_FR/unavailable.png"
+        :alt= "unavailable"
+        width="128"
+      >
+    </template>
 
-      <h4>{{ volumeInfo.title }}</h4>
+    <h1>{{ info.title }}</h1>
 
-      <p class="author">
-        <span v-if= "!volumeInfo.authors">No authors to display</span>
-        <span v-else>
-          By
-          <span v-for= "(author, index) in volumeInfo.authors" :key="index">
-            <em>
-              {{
-              index + 1 !== volumeInfo.authors.length && index + 1 !== book.volumeInfo.authors.length-1 ? author + ', ' : index + 1 == book.volumeInfo.authors.length && index+1 !== 1 ? ' and ' + author : author
-              }}
-            </em>
-          </span>
-        </span>
-      </p>
-    </a>
+    <h2 class="author">
+      <span v-if="!info.authors">No authors to display</span>
+      <span v-else>{{ info.authors[0] }}</span>
+    </h2>
+
+    <span>{{ book.id }}</span>
+
+    <h3>{{ description }}</h3>
   </div>
 </template>
 
 <script>
+
+// BOOK OBJECT
+//{
+//  id: String,
+//  volumeInfo: {
+//    title: String,
+//    authors: String[],
+//    description: String,
+//    imageLinks: {
+//      thumbnail: String
+//    }
+//  }
+//}
+
 export default {
   props: {
     book: {
@@ -40,8 +47,11 @@ export default {
     }
   },
   computed: {
-    volumeInfo(){
+    info(){
       return this.book.volumeInfo
+    },
+    description(){
+      return this.info.description.substring(0, 200)
     }
   }
 }

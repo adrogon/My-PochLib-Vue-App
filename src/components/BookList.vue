@@ -1,11 +1,11 @@
 <template>
-  <div class="book-list">
+  <div>
     <BookItem v-for="book in books" :key="book.id" :book="book"/>
   </div>
 </template>
 
 <script>
-import BookItem from "./BookItem";
+import BookItem from "./BookItem"
 
 export default {
   props: {
@@ -17,7 +17,7 @@ export default {
   components: {
     BookItem
   }
-};
+}
 </script>
 
 <style>
