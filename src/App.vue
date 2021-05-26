@@ -4,10 +4,12 @@
       <img alt="pochlib_logo" src="./assets/pochlib_logo.png">
     </div>
 
-    <h1>Ma Poch'liste</h1>
+    <h1>Nouveau livre </h1> 
     <BookList :books="savedBooks"/>
 
     <button @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
+    <br>
+    <br>
     <div v-if="showForm" class="query">
       <form @submit.prevent="search">
         <div>
@@ -16,9 +18,11 @@
           <br>
           <br>
           <button>Rechercher</button>
-          <button @click="clearSearch" type="button" depressed rounded dark>Annuler</button>
+          <button @click="clearSearch" type="button" id="clear-search-btn" depressed rounded dark>Annuler</button>
         </div>
       </form>
+    <h1>Ma Poch'liste</h1>
+    <h1>Résultat de recherche</h1>
     </div>
     <div class="content">
       <div class="loading" v-if="loadState == 'loading'"></div>
@@ -41,7 +45,7 @@ export default {
       titleSearch: '',
       authorSearch: '',
       orderBy: 'relevance',
-      maxResults: '20',
+      maxResults: '10',
       loadState: ''
     }
   },
@@ -77,6 +81,8 @@ export default {
 
       this.loadState = ''
       this.books = []
+
+           
     },
     addToMyPochList() {
       const savedBooks = []
@@ -154,6 +160,30 @@ export default {
 
   button:hover {
     background: rgb(18, 119, 94);
+    color: #fff;
+  }
+
+  #clear-search-btn {
+    display: inline-block;
+    margin: 0.5em 0;
+    padding: 1em 2em;
+    background: rgb(199, 47, 47);
+    border: 1px solid rgb(153, 7, 7);
+    border-radius: 3px;
+    color: whitesmoke;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #clear-search-btn:hover {
+    background: rgb(153, 7, 7);
     color: #fff;
   }
 
