@@ -14,32 +14,35 @@
     <h1>{{ info.title }}</h1>
 
     <h2 class="author">
-      <span v-if="!info.authors">No authors to display</span>
+      <span v-if="!info.authors">Information manquante</span>
       <span v-else>{{ info.authors[0] }}</span>
     </h2>
 
     <span>{{ book.id }}</span>
 
-    <h3>{{ description }}</h3>
+    <h3 class="description">
+      <span v-if="!info.description">Information manquante</span>
+      <span v-else>{{ info.description.substring(0, 200) }}</span>
+    </h3>
+     
   </div>
 </template>
 
 <script>
-
-// BOOK OBJECT
-//{
-//  id: String,
-//  volumeInfo: {
-//    title: String,
-//    authors: String[],
-//    description: String,
-//    imageLinks: {
-//      thumbnail: String
-//    }
-//  }
-//}
-
 export default {
+  data() {
+    return{
+      id: String,
+      volumeInfo: {
+        title: String,
+         authors: String [0],
+         description: String,
+         imageLinks: {
+           thumbnail: String
+          }
+       }
+    }
+  },
   props: {
     book: {
       type: Object,
@@ -49,9 +52,6 @@ export default {
   computed: {
     info(){
       return this.book.volumeInfo
-    },
-    description(){
-      return this.info.description.substring(0, 200)
     }
   }
 }

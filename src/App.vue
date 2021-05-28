@@ -34,7 +34,6 @@
 <script>
 import BookList from '@/components/BookList'
 import axios from 'axios'
-//import BookItemVue from '@/components/BookItem.vue'
 
 export default {
   data() {
@@ -78,29 +77,25 @@ export default {
     clearSearch() {
       this.titleSearch = ''
       this.authorSearch = ''
-
       this.loadState = ''
       this.books = []
-
+      this.showForm = ''
            
     },
     addToMyPochList() {
-      const savedBooks = []
-
-      //const savedBooks = [
-      //  {
-      //    id: "531513",
-      //    volumeInfo: {
-      //      authors: ["Anthony Drogon"],
-      //      title: "Pippi Longstocking",
-      //      description: "Some description",
-      //      imageLinks: {
-      //        thumbnail: ''
-      //      }
-      //    }
-      //  }
-      //]
-
+      const savedBooks = [
+      {
+        id: "",
+        volumeInfo: {
+          authors: [0],
+          title: "",
+          description: "",
+          imageLinks: {
+            thumbnail: ''
+            }
+          }
+        }
+      ]
       const savedBooksAsString = JSON.stringify(savedBooks)
 
       sessionStorage.setItem('savedBooks', savedBooksAsString)
@@ -114,8 +109,7 @@ export default {
     this.savedBooks = savedBooksAsJSON
   },
   components: {
-    BookList,
-    //BookItemVue
+    BookList
   }
 }
 </script>
