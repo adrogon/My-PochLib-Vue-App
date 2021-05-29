@@ -4,7 +4,7 @@
       <img alt="pochlib_logo" src="./assets/pochlib_logo.png">
     </div>
 
-    <h1>Nouveau livre </h1> 
+    <h1>Nouveau livre </h1>
     <BookList :books="savedBooks"/>
 
     <button @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
@@ -26,7 +26,7 @@
     </div>
     <div class="content">
       <div class="loading" v-if="loadState == 'loading'"></div>
-      <BookList v-if="loadState == 'success'" :books="books"/>
+      <BookList v-if="loadState == 'success'" :books="books" @bookAdded="addToMyPochList"/>
     </div>
   </div>
 </template>
@@ -49,9 +49,9 @@ export default {
     }
   },
   methods: {
+
     search() {
       this.loadState = 'loading'
-
       let keyword = ''
       if (this.titleSearch !== undefined && this.titleSearch !== '') {
         keyword = this.titleSearch
@@ -61,7 +61,6 @@ export default {
       } else {
         keyword = this.authorSearch
       }
-
       axios
         .get(
           `https://www.googleapis.com/books/v1/volumes?q=${
@@ -74,39 +73,43 @@ export default {
           this.loadState = 'success'
         })
     },
+
     clearSearch() {
       this.titleSearch = ''
       this.authorSearch = ''
       this.loadState = ''
       this.books = []
       this.showForm = ''
-           
     },
-    addToMyPochList() {
-      const savedBooks = [
-      {
-        id: "",
-        volumeInfo: {
-          authors: [0],
-          title: "",
-          description: "",
-          imageLinks: {
-            thumbnail: ''
-            }
-          }
-        }
-      ]
-      const savedBooksAsString = JSON.stringify(savedBooks)
+
+    addToMyPochList(book) {
+      if (!sessionStorage.getItem('savedBooks')) {
+        sessionStorage.setItem('savedBooks', '[]')
+      }
+
+      const currentSavedBooks = sessionStorage.getItem('savedBooks')
+
+      const currentSavedBooksAsJSON = JSON.parse(currentSavedBooks)
+
+      currentSavedBooksAsJSON.push(book)
+
+      const savedBooksAsString = JSON.stringify(currentSavedBooksAsJSON)
 
       sessionStorage.setItem('savedBooks', savedBooksAsString)
+
+      this.loadPochListe()
+    },
+
+    loadPochListe() {
+      let savedBooks = []
+      if (sessionStorage.getItem('savedBooks')) {
+        savedBooks = JSON.parse(sessionStorage.getItem('savedBooks'))
+      }
+      this.savedBooks = savedBooks
     }
   },
-  mounted(){
-    const savedBooks = sessionStorage.getItem('savedBooks')
-
-    const savedBooksAsJSON = JSON.parse(savedBooks)
-
-    this.savedBooks = savedBooksAsJSON
+  mounted: () => {
+    this.loadPochListe()
   },
   components: {
     BookList

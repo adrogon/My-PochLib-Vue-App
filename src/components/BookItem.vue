@@ -24,29 +24,24 @@
       <span v-if="!info.description">Information manquante</span>
       <span v-else>{{ info.description.substring(0, 200) }}</span>
     </h3>
+
+
+    <a @click="onAdd">Add</a>
      
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return{
-      id: String,
-      volumeInfo: {
-        title: String,
-         authors: String [0],
-         description: String,
-         imageLinks: {
-           thumbnail: String
-          }
-       }
-    }
-  },
   props: {
     book: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    onAdd() {
+      this.$emit('bookAdded')
     }
   },
   computed: {
@@ -73,3 +68,4 @@ ul li:first-child {
   font-size: 14px;
 }
 </style>
+

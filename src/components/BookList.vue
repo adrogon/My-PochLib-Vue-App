@@ -1,6 +1,8 @@
 <template>
   <div>
-    <BookItem v-for="book in books" :key="book.id" :book="book"/>
+    <BookItem v-for="book in books" :key="book.id" :book="book"
+      @bookAdded="onBookAdded(book)"
+    />
   </div>
 </template>
 
@@ -12,6 +14,11 @@ export default {
     books: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    onBookAdded(book) {
+      this.$emit('bookAdded', book)
     }
   },
   components: {
