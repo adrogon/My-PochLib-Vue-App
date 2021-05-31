@@ -2,6 +2,7 @@
   <div>
     <BookItem v-for="book in books" :key="book.id" :book="book"
       @bookAdded="onBookAdded(book)"
+      @bookDeleted="onBookDeleted(book)"
     />
   </div>
 </template>
@@ -19,6 +20,9 @@ export default {
   methods: {
     onBookAdded(book) {
       this.$emit('bookAdded', book)
+    },
+    onBookDeleted(book) {
+      this.$delete('bookDeleted', book)
     }
   },
   components: {

@@ -26,7 +26,8 @@
     </h3>
 
 
-    <a @click="onAdd">Add</a>
+    <img @click="onAdd" src="../assets/bookmark-regular.svg" alt="bookmark" id="onAddBookmark"> 
+    <img @click="onRemove" src="../assets/trash-alt-regular.svg" alt="trashcan" id="onRemoveTrashcan">
      
   </div>
 </template>
@@ -42,6 +43,9 @@ export default {
   methods: {
     onAdd() {
       this.$emit('bookAdded')
+    },
+    onRemove(){
+      this.$delete('bookDeleted')
     }
   },
   computed: {

@@ -100,9 +100,27 @@ export default {
       this.loadPochListe()
     },
 
+     removeFromPochListe(book) {
+       if (sessionStorage.removeItem('deletedBooks')) {
+        sessionStorage.removeItem('deletedBooks', '[]')
+      }
+
+      const deletedBooks = sessionStorage.delete('deletedBooks')
+
+      const deletedBooksAsJSON = JSON.parse(deletedBooks)
+
+      deletedBooksAsJSON.push(book)
+
+      const deletedBooksAsString = JSON.stringify(deletedBooksAsJSON)
+
+      sessionStorage.removeItem('deletedBooks', deletedBooksAsString)
+
+      this.loadPochListe()
+    }, 
+
     loadPochListe() {
       let savedBooks = []
-      if (sessionStorage.getItem('savedBooks')) {
+      if ((sessionStorage.getItem('savedBooks'))  || (sessionStorage.removeItem('deletedBooks'))) {
         savedBooks = JSON.parse(sessionStorage.getItem('savedBooks'))
       }
       this.savedBooks = savedBooks
