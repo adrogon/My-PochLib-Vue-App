@@ -120,10 +120,13 @@ export default {
 
     loadPochListe() {
       let savedBooks = []
+      let deletedBooks = []
+
       if ((sessionStorage.getItem('savedBooks'))  || (sessionStorage.removeItem('deletedBooks'))) {
         savedBooks = JSON.parse(sessionStorage.getItem('savedBooks'))
       }
       this.savedBooks = savedBooks
+      this.deletedBooks = deletedBooks
     }
   },
   mounted: () => {
