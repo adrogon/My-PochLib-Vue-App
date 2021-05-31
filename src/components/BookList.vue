@@ -22,7 +22,7 @@ export default {
       this.$emit('bookAdded', book)
     },
     onBookDeleted(book) {
-      this.$delete('bookDeleted', book)
+      this.$emit('bookDeleted', book)
     }
   },
   components: {

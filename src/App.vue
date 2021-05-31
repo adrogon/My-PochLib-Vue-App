@@ -5,7 +5,7 @@
     </div>
 
     <h1>Nouveau livre </h1>
-    <BookList :books="savedBooks"/>
+    <BookList :books="savedBooks" @bookDeleted="removeFromPochListe"/>
 
     <button @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
     <br>
@@ -100,23 +100,27 @@ export default {
       this.loadPochListe()
     },
 
-     removeFromPochListe(book) {
-       if (!sessionStorage.removeItem('deletedBooks')) {
-        sessionStorage.removeItem('deletedBooks', '[]')
+    removeFromPochListe(book) {
+      if (!sessionStorage.getItem('savedBooks')) {
+        return
       }
 
-      const deletedBooks = sessionStorage.removeItem('deletedBooks', 1)
+      const currentSavedBooks = sessionStorage.getItem('savedBooks')
 
-      const deletedBooksAsJSON = JSON.parse(deletedBooks)
+      const currentSavedBooksAsJSON = JSON.parse(currentSavedBooks)
 
-      deletedBooksAsJSON.push(book)
+      // Remove book from the list
+      const index = currentSavedBooksAsJSON.findIndex(b => b.id === book.id)
+      if (index > -1) {
+        currentSavedBooksAsJSON.splice(index, 1)
 
-      const deletedBooksAsString = JSON.stringify(deletedBooksAsJSON)
+        const savedBooksAsString = JSON.stringify(currentSavedBooksAsJSON)
 
-      sessionStorage.removeItem('deletedBooks', deletedBooksAsString)
+        sessionStorage.setItem('savedBooks', savedBooksAsString)
 
-      this.loadPochListe()
-    }, 
+        this.loadPochListe()
+      }
+    },
 
     loadPochListe() {
       let savedBooks = []
