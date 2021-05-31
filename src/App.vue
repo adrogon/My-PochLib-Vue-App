@@ -101,11 +101,11 @@ export default {
     },
 
      removeFromPochListe(book) {
-       if (sessionStorage.removeItem('deletedBooks')) {
+       if (!sessionStorage.removeItem('deletedBooks')) {
         sessionStorage.removeItem('deletedBooks', '[]')
       }
 
-      const deletedBooks = sessionStorage.delete('deletedBooks')
+      const deletedBooks = sessionStorage.removeItem('deletedBooks', 1)
 
       const deletedBooksAsJSON = JSON.parse(deletedBooks)
 
