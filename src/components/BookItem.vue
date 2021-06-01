@@ -25,10 +25,9 @@
       <span v-else>{{ info.description.substring(0, 200) }}</span>
     </h3>
 
-
     <img @click="onAdd" src="../assets/bookmark-regular.svg" alt="bookmark" id="onAddBookmark"> 
     <img @click="onRemove" src="../assets/trash-alt-regular.svg" alt="trashcan" id="onRemoveTrashcan">
-     
+       
   </div>
 </template>
 
@@ -62,7 +61,7 @@ ul {
 }
 
 ul li {
-  display: inline-block;
+  display: flex;
 }
 
 ul li:first-child {
@@ -70,6 +69,18 @@ ul li:first-child {
 }
 .author {
   font-size: 14px;
+}
+
+#onAddBookmark {
+  height: 40px;
+  width: auto;
+  border: none;
+}
+
+#onRemoveTrashcan {
+  height: 40px;
+  width: auto;
+  border: none;
 }
 </style>
 

@@ -1,12 +1,10 @@
 <template>
   <div id="app">
     <div>
-      <img alt="pochlib_logo" src="./assets/pochlib_logo.png">
+      <img alt="pochlib_logo" src="./assets/pochlib_logo.png" id="logo">
     </div>
-
     <h1>Nouveau livre </h1>
     <BookList :books="savedBooks" @bookDeleted="removeFromPochListe"/>
-
     <button @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
     <br>
     <br>
@@ -14,6 +12,8 @@
       <form @submit.prevent="search">
         <div>
           <input v-model="titleSearch" placeholder="Titre du livre..." class="input-text">
+          <br>
+          <br>
           <input v-model="authorSearch" placeholder="Auteur..." class="input-text">
           <br>
           <br>
@@ -68,9 +68,15 @@ export default {
           }&orderBy=${this.orderBy}&maxResults=${this.maxResults}`
         )
         .then(response => {
+          if (this.response == '') {
+            this.$alert("Aucun livre n’a été trouvé");  
+          }
+          else
+            {
           console.log(response.data.items)
           this.books = response.data.items
           this.loadState = 'success'
+          }
         })
     },
 
@@ -156,9 +162,19 @@ export default {
     margin-top: 60px;
   }
 
+  #logo {
+    height: 350px;
+    width: auto;
+    border: none;
+  }
+
   img {
-      height: 160px;
-      width: auto;
+    padding: 30px;
+    padding-bottom: 100px;
+    border: 0.5px solid #5b5d5f;
+    background-color: white;
+    height: 250px;
+    width: auto;
   }
 
   button {
