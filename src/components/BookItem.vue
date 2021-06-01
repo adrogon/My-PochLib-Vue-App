@@ -45,7 +45,7 @@ export default {
       this.$emit('bookAdded')
     },
     onRemove(){
-      this.$delete('bookDeleted')
+      this.$emit('bookDeleted')
     }
   },
   computed: {
