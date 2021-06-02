@@ -1,5 +1,9 @@
 <template>
-  <div>
+<div id=linediv>
+<img @click="onAdd" src="../assets/bookmark-regular.svg" alt="bookmark" id="onAddBookmark">
+<img @click="onRemove" src="../assets/trash-alt-regular.svg" alt="trashcan" id="onRemoveTrashcan">
+  <div id="bookItem">
+
     <template v-if= "info.imageLinks">
       <img :src= "info.imageLinks.thumbnail" :alt="info.title">
     </template>
@@ -10,24 +14,23 @@
         width="128"
       >
     </template>
-
+   
     <h1>{{ info.title }}</h1>
 
     <h2 class="author">
       <span v-if="!info.authors">Information manquante</span>
-      <span v-else>{{ info.authors[0] }}</span>
+      <span v-else > Auteur / Autrice: {{ info.authors[0] }} </span>
     </h2>
 
-    <span>{{ book.id }}</span>
+    <p> ID: {{ book.id }}</p>
 
     <h3 class="description">
+      <p>
       <span v-if="!info.description">Information manquante</span>
       <span v-else>{{ info.description.substring(0, 200) }}</span>
+      </p>
     </h3>
-
-    <img @click="onAdd" src="../assets/bookmark-regular.svg" alt="bookmark" id="onAddBookmark"> 
-    <img @click="onRemove" src="../assets/trash-alt-regular.svg" alt="trashcan" id="onRemoveTrashcan">
-       
+  </div>
   </div>
 </template>
 
@@ -56,20 +59,31 @@ export default {
 </script>
 
 <style scoped>
+
+#linediv {
+  border-style: 1px;
+}
+
 ul {
   padding: 0;
 }
 
 ul li {
-  display: flex;
+  display: inline;
 }
 
 ul li:first-child {
   list-style: none;
 }
+
 .author {
   font-size: 14px;
 }
+
+.description {
+  max-width: 40%;
+  display: inline-block;
+} 
 
 #onAddBookmark {
   height: 40px;

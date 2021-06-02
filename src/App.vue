@@ -4,7 +4,7 @@
       <img alt="pochlib_logo" src="./assets/pochlib_logo.png" id="logo">
     </div>
     <h1>Nouveau livre </h1>
-    <BookList :books="savedBooks" @bookDeleted="removeFromPochListe"/>
+    <!-- <BookList :books="savedBooks" @bookDeleted="removeFromPochListe"/> -->
     <button @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
     <br>
     <br>
@@ -21,12 +21,13 @@
           <button @click="clearSearch" type="button" id="clear-search-btn" depressed rounded dark>Annuler</button>
         </div>
       </form>
-    <h1>Ma Poch'liste</h1>
     <h1>Résultat de recherche</h1>
     </div>
     <div class="content">
       <div class="loading" v-if="loadState == 'loading'"></div>
       <BookList v-if="loadState == 'success'" :books="books" @bookAdded="addToMyPochList"/>
+      <h1>Ma Poch'liste</h1>
+    <BookList :books="savedBooks" @bookDeleted="removeFromPochListe"/>
     </div>
   </div>
 </template>
@@ -88,13 +89,20 @@ export default {
       this.showForm = ''
     },
 
-    addToMyPochList(book) {
+// TO DO: "Le même livre ne pourra pas être ajouté deux fois dans la poch’liste."
+    addToMyPochList(book) { 
+      // console.log("checking books" + book['volumeInfo'].title) 
+      let nameOfCurrentBook = ""
+      if (book){
+        nameOfCurrentBook = book['volumeInfo'].title
+
+      }
       if (!sessionStorage.getItem('savedBooks')) {
         sessionStorage.setItem('savedBooks', '[]')
       }
 
       const currentSavedBooks = sessionStorage.getItem('savedBooks')
-
+      // console.log("checking books" + JSON.stringify(currentSavedBooks)) 
       const currentSavedBooksAsJSON = JSON.parse(currentSavedBooks)
 
       currentSavedBooksAsJSON.push(book)
@@ -170,8 +178,7 @@ export default {
 
   img {
     padding: 30px;
-    padding-bottom: 100px;
-    border: 0.5px solid #5b5d5f;
+    padding-bottom: 30px;
     background-color: white;
     height: 250px;
     width: auto;
