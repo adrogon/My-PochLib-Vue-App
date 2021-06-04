@@ -4,7 +4,6 @@
       <img alt="pochlib_logo" src="./assets/pochlib_logo.png" id="logo">
     </div>
     <h1>Nouveau livre </h1>
-    <!-- <BookList :books="savedBooks" @bookDeleted="removeFromPochListe"/> -->
     <button @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
     <br>
     <br>
@@ -22,13 +21,15 @@
         </div>
       </form>
     <h1>Résultat de recherche</h1>
-    </div>
-    <div class="content">
+    <div v-if="showForm" class="content">
+      <form @submit.prevent="loading">
       <div class="loading" v-if="loadState == 'loading'"></div>
       <BookList v-if="loadState == 'success'" :books="books" @bookAdded="addToMyPochList"/>
-      <h1>Ma Poch'liste</h1>
+        <h1>Ma Poch'liste</h1> 
     <BookList :books="savedBooks" @bookDeleted="removeFromPochListe"/>
+     </form>
     </div>
+  </div>
   </div>
 </template>
 
@@ -92,11 +93,11 @@ export default {
 // TO DO: "Le même livre ne pourra pas être ajouté deux fois dans la poch’liste."
     addToMyPochList(book) { 
       // console.log("checking books" + book['volumeInfo'].title) 
-      let nameOfCurrentBook = ""
+     /* let nameOfCurrentBook = ""
       if (book){
         nameOfCurrentBook = book['volumeInfo'].title
 
-      }
+      } */
       if (!sessionStorage.getItem('savedBooks')) {
         sessionStorage.setItem('savedBooks', '[]')
       }
@@ -177,8 +178,8 @@ export default {
   }
 
   img {
-    padding: 30px;
-    padding-bottom: 30px;
+    padding: 10px;
+    padding-bottom: 10px;
     background-color: white;
     height: 250px;
     width: auto;

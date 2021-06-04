@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <BookItem v-for="book in books" :key="book.id" :book="book"
       @bookAdded="onBookAdded(book)"
       @bookDeleted="onBookDeleted(book)"
