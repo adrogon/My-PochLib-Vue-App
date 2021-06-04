@@ -30,7 +30,7 @@
      </form>
     </div>
   </div>
-  </div>
+ </div>
 </template>
 
 <script>
@@ -47,7 +47,7 @@ export default {
       authorSearch: '',
       orderBy: 'relevance',
       maxResults: '10',
-      loadState: ''
+      loadState: '',
     }
   },
   methods: {

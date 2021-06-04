@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "jquery": "^3.6.0",
     "vue": "^2.6.11",
+    "vue-info-card": "^0.1.4",
     "vue-simple-alert": "^1.1.1"
   },
   "devDependencies": {
