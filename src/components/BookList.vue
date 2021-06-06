@@ -1,10 +1,12 @@
 <template>
   <div>
-    
-    <BookItem v-for="book in books" :key="book.id" :book="book"
-      @bookAdded="onBookAdded(book)"
-      @bookDeleted="onBookDeleted(book)"
-    />
+    <BookItem v-for="book in books"
+              :key="book.id"
+              :book="book" 
+              :showAddBookmark="showAddBookmark"
+              :showTrashcan="showTrashcan"
+              @bookAdded="onBookAdded(book)"
+              @bookDeleted="onBookDeleted(book)"/>
   </div>
 </template>
 
@@ -16,6 +18,12 @@ export default {
     books: {
       type: Array,
       required: true
+    },
+    showTrashcan: {
+      type: Boolean,
+    },
+    showAddBookmark: {
+      type: Boolean,
     }
   },
   methods: {
@@ -24,7 +32,7 @@ export default {
     },
     onBookDeleted(book) {
       this.$emit('bookDeleted', book)
-    }
+    },
   },
   components: {
     BookItem

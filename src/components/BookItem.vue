@@ -1,9 +1,12 @@
 <template>
-<div id=linediv>
-<img @click="onAdd" src="../assets/bookmark-regular.svg" alt="bookmark" id="onAddBookmark">
-<img @click="onRemove" src="../assets/trash-alt-regular.svg" alt="trashcan" id="onRemoveTrashcan">
+<div>
+  <div v-if="showAddBookmark">
+    <img @click="onAdd" src="../assets/bookmark-regular.svg" alt="bookmark" id="onAddBookmark">
+  </div>
+  <div v-if="showTrashcan">
+    <img @click="onRemove" src="../assets/trash-alt-regular.svg" alt="trashcan" id="onRemoveTrashcan">
+  </div>
   <div id="bookItem">
-
     <template v-if= "info.imageLinks">
       <img :src= "info.imageLinks.thumbnail" :alt="info.title">
     </template>
@@ -36,10 +39,15 @@
 
 <script>
 export default {
-  props: {
+   props: {
     book: {
       type: Object,
-      required: true
+    },
+    showAddBookmark: {
+      type: Boolean,
+    },
+    showTrashcan: {
+      type: Boolean,
     }
   },
   methods: {
