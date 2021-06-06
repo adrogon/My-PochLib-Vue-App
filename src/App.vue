@@ -23,11 +23,17 @@
     <h1>Résultat de recherche</h1>
     <div v-if="showForm" class="content">
       <form @submit.prevent="loading">
-      <div class="loading" v-if="loadState == 'loading'"></div>
-      <BookList v-if="loadState == 'success'" :books="books" @bookAdded="addToMyPochList"/>
-        <h1>Ma Poch'liste</h1> 
-    <BookList :books="savedBooks" @bookDeleted="removeFromPochListe"/>
-     </form>
+        <div class="loading" v-if="loadState == 'loading'"></div>
+        <BookList v-if="loadState == 'success'"
+                  :books="books"
+                  :showAddBookmark="true"
+                  @bookAdded="addToMyPochList"/>
+        
+        <h1>Ma Poch'liste</h1>
+        <BookList :books="savedBooks"
+                  :showTrashcan="true"
+                  @bookDeleted="removeFromPochListe"/>
+      </form>
     </div>
   </div>
  </div>
@@ -92,10 +98,10 @@ export default {
 
 // TO DO: "Le même livre ne pourra pas être ajouté deux fois dans la poch’liste."
     addToMyPochList(book) { 
-      // console.log("checking books" + book['volumeInfo'].title) 
-     /* let nameOfCurrentBook = ""
+      // console.log("checking books" + book['volumeInfo'].id) 
+     /* let idOfCurrentBook = ""
       if (book){
-        nameOfCurrentBook = book['volumeInfo'].title
+        idOfCurrentBook = book['volumeInfo'].id
 
       } */
       if (!sessionStorage.getItem('savedBooks')) {
@@ -140,6 +146,7 @@ export default {
     loadPochListe() {
       let savedBooks = []
       let deletedBooks = []
+      
 
       if ((sessionStorage.getItem('savedBooks'))  || (sessionStorage.removeItem('deletedBooks'))) {
         savedBooks = JSON.parse(sessionStorage.getItem('savedBooks'))
@@ -152,7 +159,7 @@ export default {
     this.loadPochListe()
   },
   components: {
-    BookList
+    BookList,
   }
 }
 </script>
@@ -162,6 +169,7 @@ export default {
 
   html, body {
     font-family: 'Roboto', sans-serif;
+    height: 100%;
   }
 
   #app {
