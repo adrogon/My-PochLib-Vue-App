@@ -21,17 +21,13 @@
             src="https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Salesforce_P1_FR/unavailable.png"
             alt= "Unavailable">
       </div>
-    
       <div class="details">
         <h1>{{ info.title }}</h1>
-
         <h2 class="author">
           <span v-if="!info.authors">Information manquante</span>
           <span v-else > Auteur / Autrice: {{ info.authors[0] }} </span>
         </h2>
-
         <p> ID: {{ book.id }}</p>
-
         <h3 class="description">
           <p>
           <span v-if="!info.description">Information manquante</span>
@@ -72,52 +68,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
-.book {
-  background: #fff;
-  border-radius: 2px;
-  display: inline-block;
-  margin: 1rem;
-  position: relative;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  text-align: left;
-}
-
-.thumbnail {
-  float: left;
-  padding: 16px;
-}
-
-.details {
-  float: left;
-}
-
-ul {
-  padding: 0;
-}
-
-ul li {
-  display: inline;
-}
-
-ul li:first-child {
-  list-style: none;
-}
-
-.author {
-  font-size: 14px;
-}
-
-.description {
-  max-width: 40%;
-  display: inline-block;
-} 
-
-.actionIcon {
-  height: 40px;
-  width: auto;
-  border: none;
-}
+<style lang="scss">
+@import '@/styles/style.scss';
 </style>
-

@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+.input-text {
+  display: inline-block;
+  margin: 0.5em 0;
+  padding: 1em 2em;
+  background: transparent;
+  border: 1px solid #3d4140;
+  border-radius: 3px;
+  color: black;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.book {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 1rem;
+  position: relative;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  text-align: left;
+}
+
+.thumbnail {
+  float: left;
+  padding: 16px;
+}
+
+.details {
+  float: left;
+}
+
+ul {
+  padding: 0;
+}
+
+ul li {
+  display: inline;
+}
+
+ul li:first-child {
+  list-style: none;
+}
+
+.author {
+  font-size: 14px;
+}
+
+.description {
+  max-width: 40%;
+  display: inline-block;
+}
+
+button {
+  display: inline-block;
+  margin: 0.5em 0;
+  padding: 1em 2em;
+  background: #66bba2;
+  border: 1px solid #1aa783;
+  border-radius: 3px;
+  color: whitesmoke;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #12775e;
+  color: #fff;
+}
+
+#clear-search-btn {
+  display: inline-block;
+  margin: 0.5em 0;
+  padding: 1em 2em;
+  background: #c72f2f;
+  border: 1px solid #990707;
+  border-radius: 3px;
+  color: whitesmoke;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#clear-search-btn:hover {
+  background: #990707;
+  color: #fff;
+}
+
+#logo {
+  height: 350px;
+  width: auto;
+  border: none;
+}
+
+img {
+  padding: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  height: 250px;
+  width: auto;
+}
+
+.actionIcon {
+  height: 40px;
+  width: auto;
+  border: none;
+}
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#app {
+  color: #2c3e50;
+  margin-top: 60px;
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */
