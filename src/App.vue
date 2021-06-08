@@ -1,42 +1,48 @@
 <template>
   <div id="app">
     <div>
-      <img alt="pochlib_logo" src="./assets/pochlib_logo.png" id="logo">
+      <img id="logo" src="./assets/pochlib_logo.png" alt="Logo">
     </div>
-    <h1>Nouveau livre </h1>
-    <button @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
-    <br>
-    <br>
-    <div v-if="showForm" class="query">
-      <form @submit.prevent="search">
-        <div>
-          <input v-model="titleSearch" placeholder="Titre du livre..." class="input-text">
-          <br>
-          <br>
-          <input v-model="authorSearch" placeholder="Auteur..." class="input-text">
-          <br>
-          <br>
-          <button>Rechercher</button>
-          <button @click="clearSearch" type="button" id="clear-search-btn" depressed rounded dark>Annuler</button>
+
+    <div>
+      <h1>Nouveau livre </h1>
+      <button @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
+      <br>
+      <br>
+      <template v-if="showForm">
+        <div class="query">
+          <form @submit.prevent="search">
+            <div>
+              <input v-model="titleSearch" placeholder="Titre du livre..." class="input-text">
+              <br>
+              <br>
+              <input v-model="authorSearch" placeholder="Auteur..." class="input-text">
+              <br>
+              <br>
+              <button>Rechercher</button>
+              <button @click="clearSearch" type="button" id="clear-search-btn" depressed rounded dark>Annuler</button>
+            </div>
+          </form>
         </div>
-      </form>
-    <h1>Résultat de recherche</h1>
-    <div v-if="showForm" class="content">
-      <form @submit.prevent="loading">
-        <div class="loading" v-if="loadState == 'loading'"></div>
-        <BookList v-if="loadState == 'success'"
-                  :books="books"
-                  :showAddBookmark="true"
-                  @bookAdded="addToMyPochList"/>
-        
-        <h1>Ma Poch'liste</h1>
-        <BookList :books="savedBooks"
-                  :showTrashcan="true"
-                  @bookDeleted="removeFromPochListe"/>
-      </form>
+
+        <h1>Résultat de recherche</h1>
+        <div class="content">
+          <div class="loading" v-if="loadState == 'loading'"></div>
+          <BookList v-if="loadState == 'success'"
+                    :books="books"
+                    :showAddBookmark="true"
+                    @bookAdded="addToMyPochList"/>
+        </div>
+      </template>
+    </div>
+
+    <div>
+      <h1>Ma Poch'liste</h1>
+      <BookList :books="savedBooks"
+                :showTrashcan="true"
+                @bookDeleted="removeFromPochListe"/>
     </div>
   </div>
- </div>
 </template>
 
 <script>
@@ -96,33 +102,31 @@ export default {
       this.showForm = ''
     },
 
-// TO DO: "Le même livre ne pourra pas être ajouté deux fois dans la poch’liste."
-    addToMyPochList(book) { 
-      // console.log("checking books" + book['volumeInfo'].id) 
-     /* let idOfCurrentBook = ""
-      if (book){
-        idOfCurrentBook = book['volumeInfo'].id
+    addToMyPochList(book) {
 
-      } */
       if (!sessionStorage.getItem('savedBooks')) {
         sessionStorage.setItem('savedBooks', '[]')
       }
 
       const currentSavedBooks = sessionStorage.getItem('savedBooks')
-      // console.log("checking books" + JSON.stringify(currentSavedBooks)) 
+
       const currentSavedBooksAsJSON = JSON.parse(currentSavedBooks)
+
+      if (currentSavedBooksAsJSON.findIndex(b => b.id === book.id) > -1) {
+        alert("Vous ne pouvez ajouter deux fois le même livre")
+        return
+      }
 
       currentSavedBooksAsJSON.push(book)
 
       const savedBooksAsString = JSON.stringify(currentSavedBooksAsJSON)
-
       sessionStorage.setItem('savedBooks', savedBooksAsString)
 
       this.loadPochListe()
     },
 
-     removeFromPochListe(book) {
-       if (!sessionStorage.getItem('savedBooks')) {
+    removeFromPochListe(book) {
+      if (!sessionStorage.getItem('savedBooks')) {
         return
       }
 
@@ -130,8 +134,8 @@ export default {
 
       const currentSavedBooksAsJSON = JSON.parse(currentSavedBooks)
 
-
-       const index = currentSavedBooksAsJSON.findIndex(b => b.id === book.id)
+      const index = currentSavedBooksAsJSON.findIndex(b => b.id === book.id)
+      
       if (index > -1) {
         currentSavedBooksAsJSON.splice(index, 1)
 
@@ -139,23 +143,21 @@ export default {
 
         sessionStorage.setItem('savedBooks', savedBooksAsString)
 
-      this.loadPochListe()
+        this.loadPochListe()
       }
     }, 
 
     loadPochListe() {
       let savedBooks = []
-      let deletedBooks = []
-      
 
-      if ((sessionStorage.getItem('savedBooks'))  || (sessionStorage.removeItem('deletedBooks'))) {
+      if (sessionStorage.getItem('savedBooks')) {
         savedBooks = JSON.parse(sessionStorage.getItem('savedBooks'))
       }
+
       this.savedBooks = savedBooks
-      this.deletedBooks = deletedBooks
     }
   },
-  mounted: () => {
+  mounted() {
     this.loadPochListe()
   },
   components: {
@@ -173,10 +175,9 @@ export default {
   }
 
   #app {
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+    text-align: center;
   }
 
   #logo {
