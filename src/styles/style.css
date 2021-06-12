@@ -32,6 +32,8 @@
 
 .details {
   float: left;
+  width: 50%;
+  padding: 5px;
 }
 
 ul {
@@ -51,7 +53,7 @@ ul li:first-child {
 }
 
 .description {
-  max-width: 40%;
+  max-width: 100%;
   display: inline-block;
 }
 

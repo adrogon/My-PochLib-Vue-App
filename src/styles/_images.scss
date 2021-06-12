@@ -1,3 +1,5 @@
+@import "./mixins";
+
 #logo {
     height: 350px;
     width: auto;
@@ -5,13 +7,26 @@
   }
   img {
     padding: 10px;
-    padding-bottom: 10px;
     background-color: white;
+    height: 200px;
+    width: auto;
+  @include md {
     height: 250px;
     width: auto;
+  }
+  @include lg {
+    height: 300px;
+    width: auto;
+  }
+  @include xl {
+    height: 400px;
+    width: auto;
+  }
   }
   .actionIcon {
     height: 40px;
     width: auto;
     border: none;
+    float:right;
+    padding: 10px;
   }
