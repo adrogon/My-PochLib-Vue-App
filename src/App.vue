@@ -87,7 +87,6 @@ export default {
           }
           else
             {
-          console.log(response.data.items)
           this.books = response.data.items
           this.loadState = 'success'
           }
