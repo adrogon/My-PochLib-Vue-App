@@ -15,6 +15,8 @@ button {
     text-transform: uppercase;
     cursor: pointer;
     transition: 0.3s;
+    width: 250px;
+    
   }
 
   button:hover {
@@ -22,26 +24,24 @@ button {
     color: #fff;
   }
 
+  #search-btn {
+    display: block;
+    left: 10px;
+    top:auto; 
+    margin:0px;
+  }
+
   #clear-search-btn {
-    display: inline-block;
-    margin: 0.5em 0;
-    padding: 1em 2em;
+    display: block;
     background: rgb(199, 47, 47);
     border: 1px solid rgb(153, 7, 7);
     border-radius: 3px;
-    color: whitesmoke;
-    font-family: "Quicksand", sans-serif;
-    font-size: 1em;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    line-height: 1;
-    text-decoration: none;
     text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
+    left: 30px;
   }
 
   #clear-search-btn:hover {
     background: rgb(153, 7, 7);
     color: #fff;
+    
   }

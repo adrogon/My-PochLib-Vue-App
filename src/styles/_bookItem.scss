@@ -1,7 +1,7 @@
 
 .input-text {
-  display: inline-block;
-  margin: 0.5em 0;
+  display: block;
+  justify-content: left;
   padding: 1em 2em;
   background: transparent;
   border: 1px solid rgb(61, 65, 64);
@@ -24,11 +24,6 @@
   text-align:left;
 }
 
-.thumbnail {
-  float: none;
-  padding: top 0px; 
-}
-
 .details {
   float: left;
   width: 100%;
@@ -48,7 +43,7 @@ ul li:first-child {
 }
 
 .author {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .description {

@@ -13,16 +13,8 @@
            class="actionIcon">
     </div>
     <div>
-      <div class="thumbnail">
-        <img v-if= "info.imageLinks"
-            :src= "info.imageLinks.thumbnail"
-            :alt="info.title">
-        <img v-else
-            src="https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Salesforce_P1_FR/unavailable.png"
-            alt= "Unavailable">
-      </div>
       <div class="details">
-        <h1>{{ info.title }}</h1>
+        <h1>Titre: {{ info.title }}</h1>
         <h2 class="author">
           <span v-if="!info.authors">Information manquante</span>
           <span v-else > Auteur / Autrice: {{ info.authors[0] }} </span>
@@ -31,9 +23,17 @@
         <h3 class="description">
           <p>
           <span v-if="!info.description">Information manquante</span>
-          <span v-else>{{ info.description.substring(0, 200) }}</span>
+          <span v-else>Description: {{ info.description.substring(0, 200) }}</span>
           </p>
         </h3>
+      </div>
+      <div class="thumbnail">
+        <img v-if= "info.imageLinks"
+            :src= "info.imageLinks.thumbnail"
+            :alt="info.title">
+        <img v-else
+            src="https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Salesforce_P1_FR/unavailable.png"
+            alt= "Unavailable">
       </div>
     </div>
   </div>

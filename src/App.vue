@@ -6,28 +6,32 @@
 
     <div>
       <h1>Nouveau livre </h1>
-      <button @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
+      <div>
+        <button id="add-book-btn" @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
+      </div>
+      
       <br>
       <br>
       <template v-if="showForm">
         <div class="query">
           <form @submit.prevent="search">
             <div>
-              <input v-model="titleSearch" placeholder="Titre du livre..." class="input-text">
+              <h3>Titre du livre</h3>
+              <input v-model="titleSearch" class="input-text">
+              <h3>Auteur</h3>
+              <input v-model="authorSearch" class="input-text">
               <br>
               <br>
-              <input v-model="authorSearch" placeholder="Auteur..." class="input-text">
+              <button id="search-btn">Rechercher</button>
               <br>
-              <br>
-              <button>Rechercher</button>
               <button @click="clearSearch" type="button" id="clear-search-btn" depressed rounded dark>Annuler</button>
             </div>
           </form>
         </div>
-
-        <h1>Résultat de recherche</h1>
         <div class="content">
           <div class="loading" v-if="loadState == 'loading'"></div>
+          <br>
+          <div v-if="loadState == 'success'"> <h1>Résultat de recherche</h1> </div> 
           <BookList v-if="loadState == 'success'"
                     :books="books"
                     :showAddBookmark="true"
@@ -35,7 +39,7 @@
         </div>
       </template>
     </div>
-
+    <br>
     <div>
       <h1>Ma Poch'liste</h1>
       <BookList :books="savedBooks"
@@ -62,6 +66,7 @@ export default {
       loadState: '',
     }
   },
+ 
   methods: {
 
     search() {

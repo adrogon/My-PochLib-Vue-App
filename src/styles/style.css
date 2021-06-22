@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 .input-text {
-  display: inline-block;
-  margin: 0.5em 0;
+  display: block;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
   padding: 1em 2em;
   background: transparent;
   border: 1px solid #3d4140;
@@ -25,19 +27,14 @@
   text-align: left;
 }
 
-.thumbnail {
-  float: left;
-  padding: 16px;
-}
-
 .details {
   float: left;
-  width: 50%;
+  width: 100%;
   padding: 5px;
 }
 
 ul {
-  padding: 0;
+  padding: 10px;
 }
 
 ul li {
@@ -49,11 +46,11 @@ ul li:first-child {
 }
 
 .author {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .description {
-  max-width: 100%;
+  max-width: 98%;
   display: inline-block;
 }
 
@@ -75,6 +72,7 @@ button {
   cursor: pointer;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  width: 250px;
 }
 
 button:hover {
@@ -82,24 +80,20 @@ button:hover {
   color: #fff;
 }
 
+#search-btn {
+  display: block;
+  left: 10px;
+  top: auto;
+  margin: 0px;
+}
+
 #clear-search-btn {
-  display: inline-block;
-  margin: 0.5em 0;
-  padding: 1em 2em;
+  display: block;
   background: #c72f2f;
   border: 1px solid #990707;
   border-radius: 3px;
-  color: whitesmoke;
-  font-family: "Quicksand", sans-serif;
-  font-size: 1em;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  text-decoration: none;
   text-transform: uppercase;
-  cursor: pointer;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  left: 30px;
 }
 
 #clear-search-btn:hover {
@@ -107,6 +101,9 @@ button:hover {
   color: #fff;
 }
 
+/*********************
+BREAKPOINTS
+*********************/
 #logo {
   height: 350px;
   width: auto;
@@ -114,19 +111,47 @@ button:hover {
 }
 
 img {
-  padding: 10px;
-  padding-bottom: 10px;
+  padding: 20px;
   background-color: white;
-  height: 250px;
+  height: 200px;
   width: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  img {
+    height: 250px;
+    width: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  img {
+    height: 300px;
+    width: auto;
+  }
+}
+
+@media (min-width: 1240px) {
+  img {
+    height: 400px;
+    width: auto;
+  }
 }
 
 .actionIcon {
   height: 40px;
   width: auto;
   border: none;
+  float: right;
+  padding: 10px;
 }
 
+/*********************
+BREAKPOINTS
+*********************/
 html, body {
   font-family: 'Roboto', sans-serif;
   height: 100%;
@@ -142,5 +167,14 @@ html, body {
   color: #2c3e50;
   margin-top: 60px;
   text-align: center;
+}
+
+h3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
 }
 /*# sourceMappingURL=style.css.map */
