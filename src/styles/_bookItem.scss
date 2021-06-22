@@ -1,3 +1,18 @@
+.flex-container {
+  display: flex;
+  flex-direction:column;
+  flex: 100%; 
+  flex-wrap: wrap;
+}
+
+@media (min-width: 992px) {
+  .flex-container {
+    flex: 50%;
+    max-width: 50%;
+    flex-direction: column;
+  }
+}
+ 
 
 .input-text {
   display: block;

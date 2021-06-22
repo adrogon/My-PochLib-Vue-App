@@ -1,4 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media (min-width: 992px) {
+  .flex-container {
+    -webkit-box-flex: 50%;
+        -ms-flex: 50%;
+            flex: 50%;
+    max-width: 50%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .input-text {
   display: block;
   -webkit-box-pack: left;
@@ -104,6 +132,9 @@ button:hover {
 /*********************
 BREAKPOINTS
 *********************/
+/*********************
+FLEXBOX
+*********************/
 #logo {
   height: 350px;
   width: auto;
@@ -151,6 +182,9 @@ img {
 
 /*********************
 BREAKPOINTS
+*********************/
+/*********************
+FLEXBOX
 *********************/
 html, body {
   font-family: 'Roboto', sans-serif;

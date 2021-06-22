@@ -9,7 +9,6 @@
       <div>
         <button id="add-book-btn" @click="showForm = !showForm" depressed rounded dark>Ajouter un livre</button>
       </div>
-      
       <br>
       <br>
       <template v-if="showForm">
